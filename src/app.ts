@@ -14,6 +14,10 @@ app.use(express.json());
 
 app.get("/users", userController.getUsers);
 
+app.get("/test", (req, res) => {
+  res.send("OK!");
+});
+
 export async function init () {
   await connectDatabase();
 }
