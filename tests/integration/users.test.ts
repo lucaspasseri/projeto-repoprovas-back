@@ -14,6 +14,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
+  await clearDatabase();
   await getConnection().close();
 });
 
