@@ -1,7 +1,9 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import Category from "./Categories";
+import Match from "./Matches";
 
 @Entity("exams")
-export default  class Exam{
+export default class Exam{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -15,8 +17,11 @@ export default  class Exam{
     categoryId: number;
 
     @Column()
-    subjectId: number;
+    matchId: number;
 
-    @Column()
-    professorId: number;
+    @ManyToOne(()=> Match, match => match.id)
+    match: Match;
+
+    @ManyToOne(() => Category, category => category.id)
+    category: Category;
 }
