@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinTable, ManyToMany} from "typeorm";
 import Match from "./Matches";
-import Period from "./Periods";
+import Schedule from "./Schedules";
 
 @Entity("subjects")
 export default  class Subject{
@@ -13,6 +13,6 @@ export default  class Subject{
     @OneToMany(() => Match, match => match.subjectId)
     matches: Match[];
 
-    @ManyToMany(() => Period) @JoinTable()
-    periods: Period[];
+    @OneToMany(() => Schedule, schedule => schedule.subjectId)
+    schedules: Schedule[];
 }

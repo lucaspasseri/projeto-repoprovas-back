@@ -1,6 +1,11 @@
-import { getRepository } from "typeorm";
+import { getRepository} from "typeorm";
 import Professor from "../../src/entities/Professors";
 
 export async function clearDatabase () {
-  await getRepository(Professor).delete({});
+  const repository = getRepository(Professor);
+  await repository.query(
+    `TRUNCATE professors RESTART IDENTITY CASCADE`
+  );
 }
+
+//await getRepository(Professor).delete({}); 

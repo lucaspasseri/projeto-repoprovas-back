@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import Schedule from "./Schedules";
 
 @Entity("periods")
 export default  class Period{
@@ -7,4 +8,7 @@ export default  class Period{
 
     @Column()
     name: string;
+
+    @OneToMany(() => Schedule, schedule => schedule.periodId)
+    schedules: Schedule[];
 }
